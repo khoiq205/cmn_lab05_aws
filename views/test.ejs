@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Filter</h1>
+    <table border="true">
+        <caption>Danh sách sản phẩm</caption>
+        <thead>
+            <tr>
+                <th>Mã sản phẩm</th>
+                <th>Tên sản phẩm</th>
+                <th>Số lượng</th>
+                <th>Nhà sản xuất</th>
+                <th>Nguồn vào</th>
+                <th>Hình ảnh</th>
+                <th>Chọn</th>
+            </tr>
+        </thead>
+        <tbody>
+            <% products.forEach(item=> { %>
+                <tr>
+                    <td>
+                        <%= item.id %>
+                    </td>
+                    <td>
+                        <%= item.name %>
+                    </td>
+                    <td>
+                        <%= item.amount %>
+                    </td>
+                    <td>
+                        <%= item.manufacturer %>
+                    </td>
+                    <td>
+                        <%= item.input_power %>
+                    </td>
+                    <td><img src="<%= item.image %>" alt="<%= item.id %>" width="48" height="48"></td>
+                    <td><input type="checkbox" name="<%= item.id %>" id="<%= item.id %>" value="<%= item.id %>">
+                    </td>
+                </tr>
+                <% }); %>
+        </tbody>
+    </table>
+</body>
+</html>

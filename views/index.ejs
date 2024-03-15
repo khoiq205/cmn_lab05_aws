@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script src="./regex.js"></script>
+    <h4>Sản phẩm</h4>
+    <form action="/save" method="post" enctype="multipart/form-data">
+        <input type="text" name="id" id="id" placeholder="Nhập mã sản phẩm">
+        <br>
+        <input type="text" name="name" id="name" placeholder="Nhập tên sản phẩm" >
+        <br>
+        <input type="text" name="amount" id="amount" placeholder="Nhập số lượng sản phẩm">
+        <br>
+        <label for="manufacturer">Nhà sản xuất:</label>
+        <select name="manufacturer">
+            <option value="Tosiba">Tosiba</option>
+            <option value="Samsung">Samsung</option>
+            <option value="LG">LG</option>
+        </select>
+        <br>
+        <label for="input_power">Nguồn điện: </label>
+        <input type="radio" name="input_power" id="input_110v" value="110v" >
+        <label for="input_110v">110v</label>
+        <input type="radio" name="input_power" id="input_220v" value="220v" checked>
+        <label for="input_220v">220v</label>
+        <br>
+        <input type="file" name="image" id="image" accept="images/*">
+        <br>
+        <input type="submit" value="Thêm">
+    </form>
+    <form action="/delete" method="post">
+        <table border="true">
+            <caption>Danh sách sản phẩm</caption>
+            <thead>
+                <tr>
+                    <th>Mã sản phẩm</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Số lượng</th>
+                    <th>Nhà sản xuất</th>
+                    <th>Nguồn vào</th>
+                    <th>Hình ảnh</th>
+                    <th>Chọn</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% products.forEach(item=> { %>
+                    <tr>
+                        <td>
+                            <%= item.id %>
+                        </td>
+                        <td>
+                            <%= item.name %>
+                        </td>
+                        <td>
+                            <%= item.amount %>
+                        </td>
+                        <td>
+                            <%= item.manufacturer %>
+                        </td>
+                        <td>
+                            <%= item.input_power %>
+                        </td>
+                        <td><img src="<%= item.image %>" alt="<%= item.id %>" width="48" height="48"></td>
+                        <td><input type="checkbox" name="<%= item.id %>" id="<%= item.id %>" value="<%= item.id %>">
+                        </td>
+                    </tr>
+                    <% }); %>
+            </tbody>
+        </table>
+        <button type="submit">Xoá</button>
+    </form>
+  <form action="/filter" method="get">
+    <label for="manufacturer">Nhà sản xuất:</label>
+    <select name="filter_manufacturer">
+        <option value="">Tất cả</option>
+        <option value="Tosiba">Tosiba</option>
+        <option value="Samsung">Samsung</option>
+        <option value="LG">LG</option>
+    </select>
+    <input type="submit"  value="Lọc" >
+  </form>
+</body>
+
+</html>
